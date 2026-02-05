@@ -545,42 +545,6 @@
   .list-col-name .file-icon {
     font-size: 18px;
   }
-
-  /* Fix menu position on mobile for both grid and list views */
-  .file-menu {
-    position: fixed !important;
-    top: auto !important;
-    right: 8px !important;
-    left: 8px !important;
-    bottom: 16px;
-    transform: none !important;
-    max-width: none;
-    width: auto;
-    z-index: 1001;
-  }
-
-  /* Make menu buttons larger and easier to tap */
-  .file-menu button {
-    padding: 14px 16px;
-    font-size: 15px;
-    min-height: 48px;
-  }
-
-  .file-menu button svg {
-    font-size: 20px;
-  }
-
-  /* Ensure menu button is always visible and tappable */
-  .menu-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-  }
-
-  .list-col-actions .menu-btn {
-    width: 36px;
-    height: 36px;
-  }
 }
 
 @media (max-width: 640px) {
@@ -621,14 +585,6 @@
   .empty-state p {
     font-size: 0.8125rem;
   }
-
-  /* Increase touch target sizes */
-  .star-btn,
-  .menu-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -638,7 +594,7 @@
 
   .file-list-item {
     padding: 8px;
-    min-height: 48px;
+    min-height: 44px;
   }
 
   .list-col-name {
@@ -651,30 +607,8 @@
   }
 
   .list-col-actions .menu-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 14px;
-  }
-
-  /* Make sure menu stays visible and accessible */
-  .file-menu {
-    right: 4px !important;
-    left: 4px !important;
-    bottom: 12px;
-  }
-}
-
-/* Add backdrop for mobile menu */
-@media (max-width: 768px) {
-  .file-menu::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: -1;
-    animation: fadeIn 0.2s ease-out;
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
   }
 }
