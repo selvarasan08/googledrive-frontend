@@ -5,7 +5,6 @@ import {
   FaEllipsisV, 
   FaTrash, 
   FaDownload, 
-  FaEdit,
   FaStar,
   FaRegStar,
   FaFilePdf,
