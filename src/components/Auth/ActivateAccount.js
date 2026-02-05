@@ -13,16 +13,50 @@ const ActivateAccount = () => {
     const activate = async () => {
       try {
         const response = await activateAccount(token);
-        if (response.success) {
+        
+        // Check for success in response
+        if (response && response.success) {
           setStatus('success');
-          setMessage(response.message);
+          setMessage(response.message || 'Your account has been successfully activated!');
+        } else {
+          // Handle unexpected response format
+          setStatus('error');
+          setMessage(response?.message || 'Activation failed. Please try again.');
         }
       } catch (error) {
-        setStatus('error');
-        setMessage(error.response?.data?.message || 'Activation failed');
+        console.error('Activation error:', error);
+        
+        // Handle different error scenarios
+        if (error.response) {
+          // Server responded with error status
+          const errorMessage = error.response.data?.message || 'Activation failed';
+          
+          // Check if already activated (treat as success)
+          if (errorMessage.includes('already activated')) {
+            setStatus('success');
+            setMessage('Your account is already activated!');
+          } else {
+            setStatus('error');
+            setMessage(errorMessage);
+          }
+        } else if (error.request) {
+          // Request made but no response
+          setStatus('error');
+          setMessage('Unable to connect to server. Please check your internet connection.');
+        } else {
+          // Something else happened
+          setStatus('error');
+          setMessage('An unexpected error occurred. Please try again.');
+        }
       }
     };
-    activate();
+
+    if (token) {
+      activate();
+    } else {
+      setStatus('error');
+      setMessage('No activation token provided');
+    }
   }, [token]);
 
   return (
@@ -94,7 +128,7 @@ const ActivateAccount = () => {
                 Activation Successful!
               </h3>
               <p className="text-gray-600 mb-4 text-sm md:text-base">
-                {message || 'Your account has been successfully activated'}
+                {message}
               </p>
 
               {/* Success Badge */}
@@ -163,7 +197,7 @@ const ActivateAccount = () => {
                 Activation Failed
               </h3>
               <p className="text-gray-600 mb-8 text-sm md:text-base">
-                {message || 'We encountered an error activating your account'}
+                {message}
               </p>
 
               {/* Error Message Card */}
@@ -181,6 +215,10 @@ const ActivateAccount = () => {
                   <div className="flex items-start gap-2">
                     <span className="text-red-500 mt-0.5">•</span>
                     <p className="text-sm text-gray-700">Invalid activation token</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-red-500 mt-0.5">•</span>
+                    <p className="text-sm text-gray-700">Server connection issue</p>
                   </div>
                 </div>
               </div>

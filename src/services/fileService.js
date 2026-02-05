@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://googledrive-backend-17kt.onrender.com/api';
+const API_URL = 'https://googledrive-backend-17kt.onrender.com'; // --- IGNORE ---
 
 // Get auth token from localStorage
 const getAuthHeader = () => {

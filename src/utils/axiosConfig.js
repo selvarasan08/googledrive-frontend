@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL:  'https://googledrive-backend-17kt.onrender.com/api',
+  baseURL: 'https://googledrive-backend-17kt.onrender.com', // --- IGNORE ---
   headers: {
     'Content-Type': 'application/json',
   },
