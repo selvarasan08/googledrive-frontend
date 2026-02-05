@@ -23,35 +23,48 @@ const Register = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { firstName, lastName, email, password, confirmPassword } = formData;
+  e.preventDefault();
+  
+  // DEBUG LOGS - Remove after fixing
+  console.log('=== DEBUG INFO ===');
+  console.log('API URL from env:', process.env.REACT_APP_API_URL);
+  console.log('All env variables:', process.env);
+  console.log('Full API endpoint:', `${process.env.REACT_APP_API_URL}/auth/register`);
+  console.log('==================');
+  
+  const { firstName, lastName, email, password, confirmPassword } = formData;
 
-    if (!firstName || !lastName || !email || !password || !confirmPassword) {
-      toast.error('Please fill in all fields');
-      return;
-    }
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
-      return;
-    }
-    if (password.length < 6) {
-      toast.error('Password must be at least 6 characters');
-      return;
-    }
+  if (!firstName || !lastName || !email || !password || !confirmPassword) {
+    toast.error('Please fill in all fields');
+    return;
+  }
+  if (password !== confirmPassword) {
+    toast.error('Passwords do not match');
+    return;
+  }
+  if (password.length < 6) {
+    toast.error('Password must be at least 6 characters');
+    return;
+  }
 
-    setLoading(true);
-    try {
-      const response = await register({ firstName, lastName, email, password });
-      if (response.success) {
-        toast.success(response.message);
-        setTimeout(() => navigate('/login'), 1500);
-      }
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Registration failed');
-    } finally {
-      setLoading(false);
+  setLoading(true);
+  try {
+    console.log('Sending registration request...'); // DEBUG
+    const response = await register({ firstName, lastName, email, password });
+    console.log('Registration response:', response); // DEBUG
+    
+    if (response.success) {
+      toast.success(response.message);
+      setTimeout(() => navigate('/login'), 1500);
     }
-  };
+  } catch (error) {
+    console.error('Registration error:', error); // DEBUG
+    console.error('Error response:', error.response); // DEBUG
+    toast.error(error.response?.data?.message || 'Registration failed');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4 py-12 relative overflow-hidden">
