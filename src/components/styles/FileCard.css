@@ -1,0 +1,421 @@
+/* ========== File Card - Grid View ========== */
+
+.gdrive-file-card {
+  background: #fff;
+  border: 1px solid #e8eaed;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.gdrive-file-card:hover {
+  border-color: #1a73e8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.gdrive-file-card.clickable {
+  cursor: pointer;
+}
+
+/* File Card Preview Section */
+.file-card-preview {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e8eaed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #e8eaed;
+  position: relative;
+  overflow: hidden;
+}
+
+.file-card-icon-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-icon {
+  font-size: 56px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gdrive-file-card:hover .file-icon {
+  transform: scale(1.1);
+}
+
+/* Icon Colors */
+.folder-icon {
+  color: #5f6368;
+}
+
+.image-icon {
+  color: #34a853;
+}
+
+.pdf-icon {
+  color: #ea4335;
+}
+
+.word-icon {
+  color: #4285f4;
+}
+
+.excel-icon {
+  color: #0f9d58;
+}
+
+.video-icon {
+  color: #fbbc04;
+}
+
+.audio-icon {
+  color: #9334e6;
+}
+
+.default-icon {
+  color: #5f6368;
+}
+
+/* File Card Details */
+.file-card-details {
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  flex: 1;
+}
+
+.file-card-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-card-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #202124;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.file-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.file-meta-size,
+.file-meta-date {
+  font-size: 12px;
+  color: #5f6368;
+  line-height: 1.3;
+}
+
+/* Actions Menu */
+.file-card-actions-menu {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.menu-trigger {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #5f6368;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.gdrive-file-card:hover .menu-trigger {
+  opacity: 1;
+}
+
+.menu-trigger:hover {
+  background: #f1f3f4;
+}
+
+.file-card-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  min-width: 180px;
+  padding: 8px 0;
+  z-index: 100;
+  display: none;
+  animation: menuSlideIn 0.2s ease-out;
+}
+
+@keyframes menuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.file-card-actions-menu:hover .file-card-menu {
+  display: block;
+}
+
+.menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: #202124;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.menu-item svg {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.menu-item:hover {
+  background: #f1f3f4;
+}
+
+.menu-item.delete {
+  color: #d93025;
+}
+
+.menu-item.delete:hover {
+  background: #fce8e6;
+}
+
+/* ========== List View Styles ========== */
+
+.gdrive-file-list-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 150px 150px 100px 80px;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e8eaed;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: #fff;
+  min-height: 52px;
+}
+
+.gdrive-file-list-item:hover {
+  background: #f8f9fa;
+}
+
+.gdrive-file-list-item.clickable {
+  cursor: pointer;
+}
+
+.gdrive-file-list-item:last-child {
+  border-bottom: none;
+}
+
+.file-list-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.file-list-icon .file-icon {
+  font-size: 24px;
+}
+
+.file-list-name {
+  font-size: 14px;
+  color: #202124;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-list-name span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-list-owner,
+.file-list-modified,
+.file-list-size {
+  font-size: 13px;
+  color: #5f6368;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-list-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: flex-end;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.gdrive-file-list-item:hover .file-list-actions {
+  opacity: 1;
+}
+
+.list-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #5f6368;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.list-action-btn:hover {
+  background: #f1f3f4;
+}
+
+.list-action-btn.delete {
+  color: #d93025;
+}
+
+.list-action-btn.delete:hover {
+  background: #fce8e6;
+}
+
+/* ========== Animations ========== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gdrive-file-card {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.gdrive-file-list-item {
+  animation: fadeInUp 0.2s ease-out;
+}
+
+/* ========== Responsive Design ========== */
+
+@media (max-width: 1024px) {
+  .gdrive-file-list-item {
+    grid-template-columns: 40px 1fr 120px 100px 60px;
+    gap: 12px;
+  }
+
+  .file-list-owner {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .file-icon {
+    font-size: 48px;
+  }
+
+  .file-card-name {
+    font-size: 13px;
+  }
+
+  .file-card-meta {
+    font-size: 11px;
+  }
+
+  .gdrive-file-list-item {
+    grid-template-columns: 40px 1fr 60px;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .file-list-modified,
+  .file-list-size {
+    display: none;
+  }
+
+  .file-list-actions {
+    opacity: 1;
+  }
+
+  .menu-trigger {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .file-card-preview {
+    aspect-ratio: 1;
+  }
+
+  .file-icon {
+    font-size: 40px;
+  }
+
+  .file-card-details {
+    padding: 8px;
+  }
+
+  .file-card-name {
+    font-size: 12px;
+    -webkit-line-clamp: 1;
+  }
+
+  .file-list-icon .file-icon {
+    font-size: 20px;
+  }
+
+  .file-list-name {
+    font-size: 13px;
+  }
+}
