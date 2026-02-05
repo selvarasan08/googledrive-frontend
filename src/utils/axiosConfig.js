@@ -1,12 +1,11 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://googledrive-backend-17kt.onrender.com', // --- IGNORE ---
+  baseURL: process.env.REACT_APP_API_URL ,
   headers: {
     'Content-Type': 'application/json',
   },
 });
-//process.env.REACT_APP_API_URL ||
 
 // Request interceptor to add auth token
 axiosInstance.interceptors.request.use(
